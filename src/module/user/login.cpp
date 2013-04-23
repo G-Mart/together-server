@@ -6,11 +6,12 @@
  * @method login
  * @param {string} username username which is used for login.
  * @param {string} password password which is used for login.
- * @return {const char*} return respone data. 
+ * @param {char*} respone data. 
+ * @return {int} login status.
  */
 int login(string username, string password, string dev_id, char *buf) {
     string respon_data;
-    data::HTTPResponse *http_res = new data::HTTPResponse();
+    Response::HTTPResponse *http_res = new Response::HTTPResponse();
     string msg;
     int result;
     int ret;
@@ -25,6 +26,7 @@ int login(string username, string password, string dev_id, char *buf) {
             http_res->set_success(0);
             msg = "username or password or dev_id is null";
             LOG_ERROR << msg << endl;
+            http_res->set_msg(msg);
             break;
         }
 
@@ -35,7 +37,7 @@ int login(string username, string password, string dev_id, char *buf) {
         bool exist;
 
         // check whether username and password match is database or not 
-        ret = e.is_exist("user", "where username = '" + username + "' and password = '" + password + "'", exist);
+        ret = e.is_exist("t_user", "where username = '" + username + "' and password = '" + password + "'", exist);
         // exception
         if (ret != DB_OK) {
             result = DB_ERROR;
@@ -43,6 +45,7 @@ int login(string username, string password, string dev_id, char *buf) {
             http_res->set_success(0);
             msg = "DB ERROR|" + Tool::toString(ret);
             LOG_ERROR << msg << endl;
+            http_res->set_msg(msg);
             break;
         }
         // user not exist
@@ -52,6 +55,7 @@ int login(string username, string password, string dev_id, char *buf) {
             http_res->set_success(0);
             msg = "user not exist";
             LOG_ERROR << msg << endl;
+            http_res->set_msg(msg);
             break;
         }
 
@@ -72,15 +76,14 @@ int login(string username, string password, string dev_id, char *buf) {
 
         // set HTTPResponse
         http_res->set_success(1);
-        user::RegiestResponse *login_res = new user::RegiestResponse();
+        LOG_INFO << msg << endl;
+        http_res->set_msg(msg);
+        UserResponse::LoginResponse *login_res = new UserResponse::LoginResponse();
         login_res->set_username(username);
         login_res->set_sid(sid);
-        http_res->set_allocated_regiest_response(login_res);
-
-        LOG_INFO << msg << endl;
+        http_res->set_allocated_login_response(login_res);
     } while(0);
 	
-    http_res->set_msg(msg);
     http_res->SerializeToString(&respon_data);
     const char *p = respon_data.c_str();
     strncpy(buf, p, strlen(p) + 1);
@@ -90,39 +93,42 @@ int login(string username, string password, string dev_id, char *buf) {
 }
 
 /**
- * user login
+ * user logout
  *  
- * @method login
- * @param {string} username username which is used for login.
- * @param {string} password password which is used for login.
- * @return {const char*} return respone data. 
+ * @method logout
+ * @param {string} username username which is used for logout.
+ * @param {string} sid sid which is used for logout.
+ * @param {char*} buf respone data.
+ * @return {int} louout status. 
  */
 int logout(string username, string sid, char *buf) {
     string respon_data;
     int result;
     string msg;
-    data::HTTPResponse *http_res = new data::HTTPResponse();
+    Response::HTTPResponse *http_res = new Response::HTTPResponse();
 
     LOG_INFO << "username is " << username << " sid is " << sid << endl;
 
     do {    
-        // username or password not be found
+        // username or password is not be found
         if (Tool::trim(username).empty() || Tool::trim(sid).empty()) {
             result = PARAM_ERROR;
             http_res->set_code(PARAM_ERROR);
             http_res->set_success(0);
             msg = "username or sid is null";
             LOG_ERROR << msg << endl;
+            http_res->set_msg(msg);
             break;
         }
 
-        // session is already exist
+        // session is not exist
         if (!Session::get_instance()->exist(username)) {
-            result = SESSION_EXIST;
-            http_res->set_code(SESSION_EXIST);
+            result = SESSION_NOT_EXIST;
+            http_res->set_code(SESSION_NOT_EXIST);
             http_res->set_success(0);
-            msg = "session alreay exist";
+            msg = "session not exist";
             LOG_ERROR << msg << endl;
+            http_res->set_msg(msg);
             break;
         }
 
@@ -133,9 +139,9 @@ int logout(string username, string sid, char *buf) {
         http_res->set_success(1);
         msg = "remove session success";
         LOG_INFO << msg << endl;
+        http_res->set_msg(msg);
     } while(0);
 
-    http_res->set_msg(msg);
     http_res->SerializeToString(&respon_data);
     const char *p = respon_data.c_str();
     strncpy(buf, p, strlen(p) + 1);
