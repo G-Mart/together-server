@@ -33,7 +33,7 @@ int CreateWorker(int nWorker)
                 else if (0 == nPid)
                 {
                     bIsChild = 1;
-                    LOG_DEBUG << "create worker " << getpid() << " success!" << endl;
+                    LOG_TRACE << "create worker " << getpid() << " success!" << endl;
                 }
                 else
                 {
@@ -354,8 +354,11 @@ process* accept_sock(int listen_sock) {
 	}
 	process->sock = infd;
     process->fd = NO_FILE;
-    memset(process->md5, 0, sizeof(char) * MD5_LEN + 1); 
+    process->request = "";
+    memset(process->md5, 0, sizeof(char) * MD5_LEN + 1);
+    memset(process->buf, 0, process->kBufferSize); 
     memset(process->suffix, 0, 11); 
+    process->send_length = -1;
 	if (process->type == LISTEN_UPLOAD_REQ_TYPE)
 	{
 		process->status = STATUS_UPLOAD_READY;
@@ -424,10 +427,10 @@ int main()
 		listen_socks[i] = listen_sock;
 	}
 
-	CreateWorker(10);
+	// CreateWorker(10);
 
 	efd = epoll_create1(0);
-	LOG_DEBUG << "efd:" << efd << endl;
+	LOG_TRACE << "efd:" << efd << endl;
 	if (efd == -1) {
 		LOG_ERROR << "epoll create error!" << endl;
 		abort();

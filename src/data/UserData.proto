@@ -1,1 +1,25 @@
 package UserData;
+
+//user data
+message User_Info {
+    optional int32 uid = 1;
+    optional string username = 2;
+    optional string nick_name = 3;
+    optional string birthday = 4;
+    optional string signature_text = 5;
+    optional int32 signature_record_id = 6;
+    optional int32 praise_num = 7;
+    optional int32 visit_num = 8;
+    optional int32 followed_num = 9;
+    optional int32 follow_num = 10;
+    optional int32 sex = 11;
+    optional int32 pic_id = 12;
+}
+
+enum UserRelation {
+    NORELATION = 0;
+    FOLLOW = 1;
+    FANS = 2;
+    FOLLOWEACH = 3;
+    OWN = 4;
+}

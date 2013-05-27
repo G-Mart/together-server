@@ -25,6 +25,8 @@ void cleanup(process *process) {
 	process->fd = NO_FILE;
 	process->type = NO_TYPE;
 	process->status = NO_STATUS;
+	process->request = "";
+	process->send_length = -1;
 	memset(process->md5, 0, sizeof(char) * MD5_LEN + 1); 
     memset(process->suffix, 0, 11); 
 	reset_process(process);

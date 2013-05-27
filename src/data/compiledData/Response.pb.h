@@ -25,6 +25,8 @@
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/unknown_field_set.h>
 #include "UserResponse.pb.h"
+#include "RoomResponse.pb.h"
+#include "data.pb.h"
 // @@protoc_insertion_point(includes)
 
 namespace Response {
@@ -118,14 +120,17 @@ class HTTPResponse : public ::google::protobuf::Message {
   inline ::std::string* release_msg();
   inline void set_allocated_msg(::std::string* msg);
 
-  // optional .UserResponse.RegiestResponse regiest_response = 4;
-  inline bool has_regiest_response() const;
-  inline void clear_regiest_response();
-  static const int kRegiestResponseFieldNumber = 4;
-  inline const ::UserResponse::RegiestResponse& regiest_response() const;
-  inline ::UserResponse::RegiestResponse* mutable_regiest_response();
-  inline ::UserResponse::RegiestResponse* release_regiest_response();
-  inline void set_allocated_regiest_response(::UserResponse::RegiestResponse* regiest_response);
+  // optional string server_time = 4;
+  inline bool has_server_time() const;
+  inline void clear_server_time();
+  static const int kServerTimeFieldNumber = 4;
+  inline const ::std::string& server_time() const;
+  inline void set_server_time(const ::std::string& value);
+  inline void set_server_time(const char* value);
+  inline void set_server_time(const char* value, size_t size);
+  inline ::std::string* mutable_server_time();
+  inline ::std::string* release_server_time();
+  inline void set_allocated_server_time(::std::string* server_time);
 
   // optional .UserResponse.LoginResponse login_response = 5;
   inline bool has_login_response() const;
@@ -136,6 +141,60 @@ class HTTPResponse : public ::google::protobuf::Message {
   inline ::UserResponse::LoginResponse* release_login_response();
   inline void set_allocated_login_response(::UserResponse::LoginResponse* login_response);
 
+  // optional .UserResponse.DetailResponse detail_response = 6;
+  inline bool has_detail_response() const;
+  inline void clear_detail_response();
+  static const int kDetailResponseFieldNumber = 6;
+  inline const ::UserResponse::DetailResponse& detail_response() const;
+  inline ::UserResponse::DetailResponse* mutable_detail_response();
+  inline ::UserResponse::DetailResponse* release_detail_response();
+  inline void set_allocated_detail_response(::UserResponse::DetailResponse* detail_response);
+
+  // optional .UserResponse.UsernameExistResponse exist_username_response = 7;
+  inline bool has_exist_username_response() const;
+  inline void clear_exist_username_response();
+  static const int kExistUsernameResponseFieldNumber = 7;
+  inline const ::UserResponse::UsernameExistResponse& exist_username_response() const;
+  inline ::UserResponse::UsernameExistResponse* mutable_exist_username_response();
+  inline ::UserResponse::UsernameExistResponse* release_exist_username_response();
+  inline void set_allocated_exist_username_response(::UserResponse::UsernameExistResponse* exist_username_response);
+
+  // optional .RoomResponse.RoomInfoResponse room_info_response = 8;
+  inline bool has_room_info_response() const;
+  inline void clear_room_info_response();
+  static const int kRoomInfoResponseFieldNumber = 8;
+  inline const ::RoomResponse::RoomInfoResponse& room_info_response() const;
+  inline ::RoomResponse::RoomInfoResponse* mutable_room_info_response();
+  inline ::RoomResponse::RoomInfoResponse* release_room_info_response();
+  inline void set_allocated_room_info_response(::RoomResponse::RoomInfoResponse* room_info_response);
+
+  // optional .RoomResponse.CreateRoomResponse create_room_response = 9;
+  inline bool has_create_room_response() const;
+  inline void clear_create_room_response();
+  static const int kCreateRoomResponseFieldNumber = 9;
+  inline const ::RoomResponse::CreateRoomResponse& create_room_response() const;
+  inline ::RoomResponse::CreateRoomResponse* mutable_create_room_response();
+  inline ::RoomResponse::CreateRoomResponse* release_create_room_response();
+  inline void set_allocated_create_room_response(::RoomResponse::CreateRoomResponse* create_room_response);
+
+  // optional .Data.List list = 10;
+  inline bool has_list() const;
+  inline void clear_list();
+  static const int kListFieldNumber = 10;
+  inline const ::Data::List& list() const;
+  inline ::Data::List* mutable_list();
+  inline ::Data::List* release_list();
+  inline void set_allocated_list(::Data::List* list);
+
+  // optional .UserResponse.IsExistNewMessageResponse exist_new_message_response = 11;
+  inline bool has_exist_new_message_response() const;
+  inline void clear_exist_new_message_response();
+  static const int kExistNewMessageResponseFieldNumber = 11;
+  inline const ::UserResponse::IsExistNewMessageResponse& exist_new_message_response() const;
+  inline ::UserResponse::IsExistNewMessageResponse* mutable_exist_new_message_response();
+  inline ::UserResponse::IsExistNewMessageResponse* release_exist_new_message_response();
+  inline void set_allocated_exist_new_message_response(::UserResponse::IsExistNewMessageResponse* exist_new_message_response);
+
   // @@protoc_insertion_point(class_scope:Response.HTTPResponse)
  private:
   inline void set_has_code();
@@ -144,21 +203,39 @@ class HTTPResponse : public ::google::protobuf::Message {
   inline void clear_has_success();
   inline void set_has_msg();
   inline void clear_has_msg();
-  inline void set_has_regiest_response();
-  inline void clear_has_regiest_response();
+  inline void set_has_server_time();
+  inline void clear_has_server_time();
   inline void set_has_login_response();
   inline void clear_has_login_response();
+  inline void set_has_detail_response();
+  inline void clear_has_detail_response();
+  inline void set_has_exist_username_response();
+  inline void clear_has_exist_username_response();
+  inline void set_has_room_info_response();
+  inline void clear_has_room_info_response();
+  inline void set_has_create_room_response();
+  inline void clear_has_create_room_response();
+  inline void set_has_list();
+  inline void clear_has_list();
+  inline void set_has_exist_new_message_response();
+  inline void clear_has_exist_new_message_response();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::google::protobuf::int32 code_;
   bool success_;
   ::std::string* msg_;
-  ::UserResponse::RegiestResponse* regiest_response_;
+  ::std::string* server_time_;
   ::UserResponse::LoginResponse* login_response_;
+  ::UserResponse::DetailResponse* detail_response_;
+  ::UserResponse::UsernameExistResponse* exist_username_response_;
+  ::RoomResponse::RoomInfoResponse* room_info_response_;
+  ::RoomResponse::CreateRoomResponse* create_room_response_;
+  ::Data::List* list_;
+  ::UserResponse::IsExistNewMessageResponse* exist_new_message_response_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(11 + 31) / 32];
 
   friend void  protobuf_AddDesc_Response_2eproto();
   friend void protobuf_AssignDesc_Response_2eproto();
@@ -288,41 +365,73 @@ inline void HTTPResponse::set_allocated_msg(::std::string* msg) {
   }
 }
 
-// optional .UserResponse.RegiestResponse regiest_response = 4;
-inline bool HTTPResponse::has_regiest_response() const {
+// optional string server_time = 4;
+inline bool HTTPResponse::has_server_time() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }
-inline void HTTPResponse::set_has_regiest_response() {
+inline void HTTPResponse::set_has_server_time() {
   _has_bits_[0] |= 0x00000008u;
 }
-inline void HTTPResponse::clear_has_regiest_response() {
+inline void HTTPResponse::clear_has_server_time() {
   _has_bits_[0] &= ~0x00000008u;
 }
-inline void HTTPResponse::clear_regiest_response() {
-  if (regiest_response_ != NULL) regiest_response_->::UserResponse::RegiestResponse::Clear();
-  clear_has_regiest_response();
+inline void HTTPResponse::clear_server_time() {
+  if (server_time_ != &::google::protobuf::internal::kEmptyString) {
+    server_time_->clear();
+  }
+  clear_has_server_time();
 }
-inline const ::UserResponse::RegiestResponse& HTTPResponse::regiest_response() const {
-  return regiest_response_ != NULL ? *regiest_response_ : *default_instance_->regiest_response_;
+inline const ::std::string& HTTPResponse::server_time() const {
+  return *server_time_;
 }
-inline ::UserResponse::RegiestResponse* HTTPResponse::mutable_regiest_response() {
-  set_has_regiest_response();
-  if (regiest_response_ == NULL) regiest_response_ = new ::UserResponse::RegiestResponse;
-  return regiest_response_;
+inline void HTTPResponse::set_server_time(const ::std::string& value) {
+  set_has_server_time();
+  if (server_time_ == &::google::protobuf::internal::kEmptyString) {
+    server_time_ = new ::std::string;
+  }
+  server_time_->assign(value);
 }
-inline ::UserResponse::RegiestResponse* HTTPResponse::release_regiest_response() {
-  clear_has_regiest_response();
-  ::UserResponse::RegiestResponse* temp = regiest_response_;
-  regiest_response_ = NULL;
-  return temp;
+inline void HTTPResponse::set_server_time(const char* value) {
+  set_has_server_time();
+  if (server_time_ == &::google::protobuf::internal::kEmptyString) {
+    server_time_ = new ::std::string;
+  }
+  server_time_->assign(value);
 }
-inline void HTTPResponse::set_allocated_regiest_response(::UserResponse::RegiestResponse* regiest_response) {
-  delete regiest_response_;
-  regiest_response_ = regiest_response;
-  if (regiest_response) {
-    set_has_regiest_response();
+inline void HTTPResponse::set_server_time(const char* value, size_t size) {
+  set_has_server_time();
+  if (server_time_ == &::google::protobuf::internal::kEmptyString) {
+    server_time_ = new ::std::string;
+  }
+  server_time_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* HTTPResponse::mutable_server_time() {
+  set_has_server_time();
+  if (server_time_ == &::google::protobuf::internal::kEmptyString) {
+    server_time_ = new ::std::string;
+  }
+  return server_time_;
+}
+inline ::std::string* HTTPResponse::release_server_time() {
+  clear_has_server_time();
+  if (server_time_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
   } else {
-    clear_has_regiest_response();
+    ::std::string* temp = server_time_;
+    server_time_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void HTTPResponse::set_allocated_server_time(::std::string* server_time) {
+  if (server_time_ != &::google::protobuf::internal::kEmptyString) {
+    delete server_time_;
+  }
+  if (server_time) {
+    set_has_server_time();
+    server_time_ = server_time;
+  } else {
+    clear_has_server_time();
+    server_time_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   }
 }
 
@@ -361,6 +470,234 @@ inline void HTTPResponse::set_allocated_login_response(::UserResponse::LoginResp
     set_has_login_response();
   } else {
     clear_has_login_response();
+  }
+}
+
+// optional .UserResponse.DetailResponse detail_response = 6;
+inline bool HTTPResponse::has_detail_response() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void HTTPResponse::set_has_detail_response() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void HTTPResponse::clear_has_detail_response() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline void HTTPResponse::clear_detail_response() {
+  if (detail_response_ != NULL) detail_response_->::UserResponse::DetailResponse::Clear();
+  clear_has_detail_response();
+}
+inline const ::UserResponse::DetailResponse& HTTPResponse::detail_response() const {
+  return detail_response_ != NULL ? *detail_response_ : *default_instance_->detail_response_;
+}
+inline ::UserResponse::DetailResponse* HTTPResponse::mutable_detail_response() {
+  set_has_detail_response();
+  if (detail_response_ == NULL) detail_response_ = new ::UserResponse::DetailResponse;
+  return detail_response_;
+}
+inline ::UserResponse::DetailResponse* HTTPResponse::release_detail_response() {
+  clear_has_detail_response();
+  ::UserResponse::DetailResponse* temp = detail_response_;
+  detail_response_ = NULL;
+  return temp;
+}
+inline void HTTPResponse::set_allocated_detail_response(::UserResponse::DetailResponse* detail_response) {
+  delete detail_response_;
+  detail_response_ = detail_response;
+  if (detail_response) {
+    set_has_detail_response();
+  } else {
+    clear_has_detail_response();
+  }
+}
+
+// optional .UserResponse.UsernameExistResponse exist_username_response = 7;
+inline bool HTTPResponse::has_exist_username_response() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+inline void HTTPResponse::set_has_exist_username_response() {
+  _has_bits_[0] |= 0x00000040u;
+}
+inline void HTTPResponse::clear_has_exist_username_response() {
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline void HTTPResponse::clear_exist_username_response() {
+  if (exist_username_response_ != NULL) exist_username_response_->::UserResponse::UsernameExistResponse::Clear();
+  clear_has_exist_username_response();
+}
+inline const ::UserResponse::UsernameExistResponse& HTTPResponse::exist_username_response() const {
+  return exist_username_response_ != NULL ? *exist_username_response_ : *default_instance_->exist_username_response_;
+}
+inline ::UserResponse::UsernameExistResponse* HTTPResponse::mutable_exist_username_response() {
+  set_has_exist_username_response();
+  if (exist_username_response_ == NULL) exist_username_response_ = new ::UserResponse::UsernameExistResponse;
+  return exist_username_response_;
+}
+inline ::UserResponse::UsernameExistResponse* HTTPResponse::release_exist_username_response() {
+  clear_has_exist_username_response();
+  ::UserResponse::UsernameExistResponse* temp = exist_username_response_;
+  exist_username_response_ = NULL;
+  return temp;
+}
+inline void HTTPResponse::set_allocated_exist_username_response(::UserResponse::UsernameExistResponse* exist_username_response) {
+  delete exist_username_response_;
+  exist_username_response_ = exist_username_response;
+  if (exist_username_response) {
+    set_has_exist_username_response();
+  } else {
+    clear_has_exist_username_response();
+  }
+}
+
+// optional .RoomResponse.RoomInfoResponse room_info_response = 8;
+inline bool HTTPResponse::has_room_info_response() const {
+  return (_has_bits_[0] & 0x00000080u) != 0;
+}
+inline void HTTPResponse::set_has_room_info_response() {
+  _has_bits_[0] |= 0x00000080u;
+}
+inline void HTTPResponse::clear_has_room_info_response() {
+  _has_bits_[0] &= ~0x00000080u;
+}
+inline void HTTPResponse::clear_room_info_response() {
+  if (room_info_response_ != NULL) room_info_response_->::RoomResponse::RoomInfoResponse::Clear();
+  clear_has_room_info_response();
+}
+inline const ::RoomResponse::RoomInfoResponse& HTTPResponse::room_info_response() const {
+  return room_info_response_ != NULL ? *room_info_response_ : *default_instance_->room_info_response_;
+}
+inline ::RoomResponse::RoomInfoResponse* HTTPResponse::mutable_room_info_response() {
+  set_has_room_info_response();
+  if (room_info_response_ == NULL) room_info_response_ = new ::RoomResponse::RoomInfoResponse;
+  return room_info_response_;
+}
+inline ::RoomResponse::RoomInfoResponse* HTTPResponse::release_room_info_response() {
+  clear_has_room_info_response();
+  ::RoomResponse::RoomInfoResponse* temp = room_info_response_;
+  room_info_response_ = NULL;
+  return temp;
+}
+inline void HTTPResponse::set_allocated_room_info_response(::RoomResponse::RoomInfoResponse* room_info_response) {
+  delete room_info_response_;
+  room_info_response_ = room_info_response;
+  if (room_info_response) {
+    set_has_room_info_response();
+  } else {
+    clear_has_room_info_response();
+  }
+}
+
+// optional .RoomResponse.CreateRoomResponse create_room_response = 9;
+inline bool HTTPResponse::has_create_room_response() const {
+  return (_has_bits_[0] & 0x00000100u) != 0;
+}
+inline void HTTPResponse::set_has_create_room_response() {
+  _has_bits_[0] |= 0x00000100u;
+}
+inline void HTTPResponse::clear_has_create_room_response() {
+  _has_bits_[0] &= ~0x00000100u;
+}
+inline void HTTPResponse::clear_create_room_response() {
+  if (create_room_response_ != NULL) create_room_response_->::RoomResponse::CreateRoomResponse::Clear();
+  clear_has_create_room_response();
+}
+inline const ::RoomResponse::CreateRoomResponse& HTTPResponse::create_room_response() const {
+  return create_room_response_ != NULL ? *create_room_response_ : *default_instance_->create_room_response_;
+}
+inline ::RoomResponse::CreateRoomResponse* HTTPResponse::mutable_create_room_response() {
+  set_has_create_room_response();
+  if (create_room_response_ == NULL) create_room_response_ = new ::RoomResponse::CreateRoomResponse;
+  return create_room_response_;
+}
+inline ::RoomResponse::CreateRoomResponse* HTTPResponse::release_create_room_response() {
+  clear_has_create_room_response();
+  ::RoomResponse::CreateRoomResponse* temp = create_room_response_;
+  create_room_response_ = NULL;
+  return temp;
+}
+inline void HTTPResponse::set_allocated_create_room_response(::RoomResponse::CreateRoomResponse* create_room_response) {
+  delete create_room_response_;
+  create_room_response_ = create_room_response;
+  if (create_room_response) {
+    set_has_create_room_response();
+  } else {
+    clear_has_create_room_response();
+  }
+}
+
+// optional .Data.List list = 10;
+inline bool HTTPResponse::has_list() const {
+  return (_has_bits_[0] & 0x00000200u) != 0;
+}
+inline void HTTPResponse::set_has_list() {
+  _has_bits_[0] |= 0x00000200u;
+}
+inline void HTTPResponse::clear_has_list() {
+  _has_bits_[0] &= ~0x00000200u;
+}
+inline void HTTPResponse::clear_list() {
+  if (list_ != NULL) list_->::Data::List::Clear();
+  clear_has_list();
+}
+inline const ::Data::List& HTTPResponse::list() const {
+  return list_ != NULL ? *list_ : *default_instance_->list_;
+}
+inline ::Data::List* HTTPResponse::mutable_list() {
+  set_has_list();
+  if (list_ == NULL) list_ = new ::Data::List;
+  return list_;
+}
+inline ::Data::List* HTTPResponse::release_list() {
+  clear_has_list();
+  ::Data::List* temp = list_;
+  list_ = NULL;
+  return temp;
+}
+inline void HTTPResponse::set_allocated_list(::Data::List* list) {
+  delete list_;
+  list_ = list;
+  if (list) {
+    set_has_list();
+  } else {
+    clear_has_list();
+  }
+}
+
+// optional .UserResponse.IsExistNewMessageResponse exist_new_message_response = 11;
+inline bool HTTPResponse::has_exist_new_message_response() const {
+  return (_has_bits_[0] & 0x00000400u) != 0;
+}
+inline void HTTPResponse::set_has_exist_new_message_response() {
+  _has_bits_[0] |= 0x00000400u;
+}
+inline void HTTPResponse::clear_has_exist_new_message_response() {
+  _has_bits_[0] &= ~0x00000400u;
+}
+inline void HTTPResponse::clear_exist_new_message_response() {
+  if (exist_new_message_response_ != NULL) exist_new_message_response_->::UserResponse::IsExistNewMessageResponse::Clear();
+  clear_has_exist_new_message_response();
+}
+inline const ::UserResponse::IsExistNewMessageResponse& HTTPResponse::exist_new_message_response() const {
+  return exist_new_message_response_ != NULL ? *exist_new_message_response_ : *default_instance_->exist_new_message_response_;
+}
+inline ::UserResponse::IsExistNewMessageResponse* HTTPResponse::mutable_exist_new_message_response() {
+  set_has_exist_new_message_response();
+  if (exist_new_message_response_ == NULL) exist_new_message_response_ = new ::UserResponse::IsExistNewMessageResponse;
+  return exist_new_message_response_;
+}
+inline ::UserResponse::IsExistNewMessageResponse* HTTPResponse::release_exist_new_message_response() {
+  clear_has_exist_new_message_response();
+  ::UserResponse::IsExistNewMessageResponse* temp = exist_new_message_response_;
+  exist_new_message_response_ = NULL;
+  return temp;
+}
+inline void HTTPResponse::set_allocated_exist_new_message_response(::UserResponse::IsExistNewMessageResponse* exist_new_message_response) {
+  delete exist_new_message_response_;
+  exist_new_message_response_ = exist_new_message_response;
+  if (exist_new_message_response) {
+    set_has_exist_new_message_response();
+  } else {
+    clear_has_exist_new_message_response();
   }
 }
 

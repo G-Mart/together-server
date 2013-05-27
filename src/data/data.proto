@@ -1,0 +1,12 @@
+package Data;
+import "RoomData.proto";
+import "UserData.proto";
+import "UserResponse.proto";
+
+// list
+message List {
+	optional bool is_end = 1;
+    repeated RoomData.RoomInfo room_info = 2;
+    repeated UserResponse.DetailResponse user_detail = 3;
+    repeated UserResponse.UserMessageResponse user_message_info = 4;
+}

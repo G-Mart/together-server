@@ -128,7 +128,6 @@ int Tool::get_project_path(char *buf, int count) {
         }
         temp_buf += "together/";
         Tool::S2C(temp_buf, buf);
-        cout << buf << endl;
     }
     
     return result;
@@ -238,4 +237,44 @@ vector<string> Tool::split(string str, string pattern)
         }
     }
     return result;
+}
+
+/**
+ * [Tool::now_time get now system time]
+ * @return [now time string]
+ */
+string Tool::now_time()
+{
+    time_t t = time(NULL);
+    char buf[32];
+    strftime(buf, sizeof(buf), "%Y%m%d%H%M%S",localtime(&t));
+    string str(buf);
+    return str;
+}
+
+
+string Tool::url_decode(const string &sIn)
+{
+
+    string sOut;
+    for(size_t ix = 0; ix < sIn.size(); ix++ )
+    {
+        unsigned char ch = 0;
+        if(sIn[ix]=='%')
+        {
+            ch = (fromHex(sIn[ix+1])<<4);
+            ch |= fromHex(sIn[ix+2]);
+            ix += 2;
+        }
+        else if(sIn[ix] == '+')
+        {
+            ch = ' ';
+        }
+        else
+        {
+            ch = sIn[ix];
+        }
+        sOut += (char)ch;
+    }
+    return sOut;
 }
