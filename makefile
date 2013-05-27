@@ -10,7 +10,7 @@ CCOBJS=$(CCFILES:%.cc=%.o)
 LIBS+= -lmysqlclient -lprotobuf
 TARGET = ./build/server
 
-all:$(TARGET) clean
+all:$(TARGET)
 
 -include $(addsuffix /*.d, $(SRC_DIR))
 
@@ -31,4 +31,5 @@ cleanall:clean
 	rm -f $(TARGET)
 
 upload:cleanall
+	find ./ -name *~ | xargs rm -f
 	find ./ * | xargs chmod 777

@@ -9,6 +9,9 @@
 #include <sstream>
 #include <iostream>
 #include <vector>
+#include <math.h>
+#include <time.h>
+#include <typeinfo>
 
 #ifndef STR_VALUE
 #define STR_VALUE(val) #val
@@ -39,7 +42,14 @@ public:
 	static int calc_file_MD5(char *file_name, char *md5_sum);
 	static string base64_decode(const char* Data);
 	static vector<string> split(string str, string pattern);
-	
+	static string now_time();
+	static string url_decode(const string &sIn);
+
+	static unsigned char fromHex(const unsigned char &x)
+    {
+        return isdigit(x) ? x-'0' : x-'A'+10;
+    }
+
 	/**
 	 * [Tool::fromString description]
 	 * Usage:
@@ -51,9 +61,13 @@ public:
 	 */
 	template<typename T>
 	static T fromString(const std::string& s) {
-	  std::istringstream is(s);
+	  // std::istringstream is(s);
 	  T t;
-	  is >> t;
+	  // is >> t;
+	  std::stringstream sstr;
+	  sstr << s;
+	  sstr >> t;
+	  sstr.clear();
 	  return t;
 	}
 
@@ -72,6 +86,27 @@ public:
 	  ostringstream s;
 	  s << t;
 	  return s.str();
+	}
+
+	/**
+	 * [Tool::mysql_filter description]
+	 * Usage:
+	 * long a = 100;
+	 * string b = mysql_filter(a) + "'";
+	 * 
+	 * @param t  [description]
+	 * @return   [description]
+	 */
+	template<typename T>
+	static string mysql_filter(const T &t) {
+		string result;
+	 	string temp = Tool::toString(t);
+		if(typeid(t).name() == typeid(string).name()) {
+			temp = "'" + temp + "'";
+		} else {
+		  	Tool::toString(t);
+		}
+		return temp;
 	}
 };
 
